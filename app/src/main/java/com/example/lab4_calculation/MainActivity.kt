@@ -34,9 +34,7 @@ class MainActivity : ComponentActivity() {
 fun ScreenOn(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         Text(
-            ((1.0/factorial(1))+(1.0/factorial(3))+
-            (1.0/factorial(5))+(1.0/factorial(7))+
-            (1.0/factorial(9))).toString()
+            calculationFunc(0.00001).toString()
         )
     }
 }
@@ -46,6 +44,23 @@ fun factorial(part: Int): Int {
         1
     else
         part*factorial(part-1)
+}
+
+fun calculationFunc(limit: Double): Triple<Double, Double, Int> {
+    var result = 0.0
+    var part = 1
+    var count = 0
+    var lastTerm = 0.0
+    while (true){
+        val term = (1.0/factorial(part))
+        if (term < limit)
+            break
+        result+=term
+        part+=2
+        count++
+        lastTerm = term
+    }
+    return Triple(result,lastTerm,count)
 }
 
 @Preview(showBackground = true)
