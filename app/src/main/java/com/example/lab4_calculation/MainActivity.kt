@@ -32,19 +32,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ScreenOn(modifier: Modifier = Modifier) {
-    Column() {
-        Text(Factorial(1).toString())
-        Text(Factorial(2).toString())
-        Text(Factorial(3).toString())
-        Text(Factorial(4).toString())
+    Column(modifier = modifier) {
+        Text(
+            ((1.0/factorial(1))+(1.0/factorial(3))+
+            (1.0/factorial(5))+(1.0/factorial(7))+
+            (1.0/factorial(9))).toString()
+        )
     }
 }
 
-fun Factorial(part: Int): Int {
+fun factorial(part: Int): Int {
     return if (part == 1)
         1
     else
-        part*Factorial(part-1)
+        part*factorial(part-1)
 }
 
 @Preview(showBackground = true)
