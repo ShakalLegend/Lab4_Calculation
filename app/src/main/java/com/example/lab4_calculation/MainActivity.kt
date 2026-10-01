@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.lab4_calculation.ui.theme.Lab4_CalculationTheme
+import kotlin.time.Duration.Companion.seconds
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +33,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ScreenOn(modifier: Modifier = Modifier) {
+    val (result,lastTerm,count) = calculationFunc(0.0001)
     Column(modifier = modifier) {
         Text(
-            calculationFunc(0.00001).toString()
+            result.toString()
+        )
+        Text(
+            lastTerm.toString()
+        )
+        Text(
+            count.toString()
         )
     }
 }
 
-fun factorial(part: Int): Int {
+fun factorial(part: Int): Long {
     return if (part == 1)
         1
     else
