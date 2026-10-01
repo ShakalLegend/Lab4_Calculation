@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -20,8 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Lab4_CalculationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    ScreenOn(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -31,17 +31,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun ScreenOn(modifier: Modifier = Modifier) {
+    Column() {
+        Text(Factorial(1).toString())
+        Text(Factorial(2).toString())
+        Text(Factorial(3).toString())
+        Text(Factorial(4).toString())
+    }
+}
+
+fun Factorial(part: Int): Int {
+    return if (part == 1)
+        1
+    else
+        part*Factorial(part-1)
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ScreenPreview() {
     Lab4_CalculationTheme {
-        Greeting("Android")
+        ScreenOn()
     }
 }
